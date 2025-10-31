@@ -27,9 +27,9 @@ const allSubjects: Record<string, SubjectData> = {
                 example: "name = \"Damon\"  # string\nage = 23  # integer\nheight = 5.8  # float\nis_active = True  # boolean\nscores = [90, 85, 88]  # list\npoint = (10, 20)  # tuple\nuser = {'name': 'Damon', 'age': 30}  # dict"
             },
             {
-                title: "String Manipulation (f-strings)",
-                syntax: "f\"...{expression}...\"\nstr.upper(), str.lower(), str.strip()\nstr.split(delimiter)",
-                example: "name = \"Damon\"\nage = 25\nprint(f\"Name: {name}, Age: {age}\")\n\n' Plant '.strip()  # 'hello'\n'a,b,c'.split(',')  # ['a', 'b', 'c']"
+                title: "Array",
+                syntax: "import array\n\narr = array.array('i', [1, 2, 3])",
+                example: "import array\n\n# 'i' for signed integer\nint_array = array.array('i', [10, 20, 30])\nint_array.append(40)\nprint(int_array[1]) # 20"
             },
             {
                 title: "List Methods & Slicing",
@@ -41,11 +41,7 @@ const allSubjects: Record<string, SubjectData> = {
                 syntax: "my_dict.get(key, default)\nmy_dict.keys()\nmy_dict.values()\nmy_dict.items()",
                 example: "user = {'name': 'Damon', 'age': 25}\nuser.get('age')      # 25\nuser.get('job', 'N/A') # 'N/A'\nuser.keys()      # ['name', 'age']\nuser.items()     # [('name', 'Damon'), ('age', 25)]"
             },
-            {
-                title: "List Comprehensions",
-                syntax: "[expression for item in iterable if condition]",
-                example: "squares = [x**2 for x in range(10)]\nevens = [x for x in range(20) if x % 2 == 0]"
-            },
+
             {
                 title: "Conditionals",
                 syntax: "if condition:\n    ...\nelif other_condition:\n    ...\nelse:\n    ...",
@@ -111,6 +107,11 @@ const allSubjects: Record<string, SubjectData> = {
                 title: "Struct Embedding",
                 syntax: "type Child struct {\n    Parent\n    Field type\n}",
                 example: "type Animal struct { Name string }\nfunc (a Animal) Speak() { ... }\n\ntype Dog struct {\n    Animal // Embeds Animal\n    Breed string\n}\n\nd := Dog{Animal: Animal{Name: \"Buddy\"}}\nd.Speak() // Access embedded method"
+            },
+            {
+                title: "Arrays (fixed size)",
+                syntax: "var name [size]type\nname := [size]type{val1, val2, ...}",
+                example: "var nums [3]int // [0, 0, 0]\n\nscores := [3]int{90, 85, 88}\nfmt.Println(scores[1]) // 85\n\n// Slices are (usually) preferred\ns := []int{1, 2, 3}"
             },
             {
                 title: "Slices (make & append)",
@@ -394,6 +395,19 @@ const allSubjects: Record<string, SubjectData> = {
                 syntax: "#include <stdexcept>\n\ntry {\n    ...\n    throw std::exception();\n} catch (const std::exception& e) {\n    std::cerr << e.what() << std::endl;\n}",
                 example: "double divide(int a, int b) {\n    if (b == 0) {\n        throw std::runtime_error(\"Division by zero!\");\n    }\n    return (double)a / b;\n}\n\ntry {\n    double res = divide(10, 0);\n} catch (const std::runtime_error& e) {\n    std::cerr << \"Error: \" << e.what() << std::endl;\n}"
             },
+
+
+        ]
+    },
+
+    "Naming Conventions": {
+        name: "Naming Conventions",
+        items: [
+            {
+                title: "Case Styles",
+                syntax: "camelCase: first word lower, next words upper.\nPascalCase: All words upper.\nsnake_case: all words lower, joined by underscore.\nUPPER_SNAKE_CASE: all words upper, joined by underscore.\nkebab-case: all words lower, joined by hyphen.",
+                example: "// camelCase(JS/Java/Go vars, functions)\nlet myVariableName = \"Cases\";\n\n// PascalCase (Classes, Components)\nclass MyClassName {}\n\n// snake_case (Python vars, functions)\ndef my_function_name():\n  Cases\n\n// UPPER_SNAKE_CASE (Constants)\nconst NUMBER_OF_ALBUMS = 10;\n\n// kebab-case (CSS classes, HTML attributes)\n// <div class=\"my-css-class\"></div>"
+            }
         ]
     },
 
@@ -697,50 +711,109 @@ const allSubjects: Record<string, SubjectData> = {
         items: [
             {
                 title: "Set Notation",
-                syntax: "A = {elements}\n$x \\in A$ (x is in A)\n$x \\notin A$ (x is not in A)\n$\\{\\}$ or $\\emptyset$ (Empty Set)",
-                example: "A = {1, 2, 3, 4, 5}\n$3 \\in A$\n$6 \\notin A$\n$B = \\{x \\mid x \\text{ is even}\\}$ (Set-builder)"
+                syntax: "A = {elements}\nx ∈ A (x is in A)\nx ∉ A (x is not in A)\n{} or ∅ (Empty Set)",
+                example: "A = {1, 2, 3, 4, 5}\n3 ∈ A\n6 ∉ A\nB = {x ∣ x is even} (Set-builder)"
             },
             {
-                title: "Union ($A \\cup B$)",
-                syntax: "All elements in A, or B, or both.\n$A \\cup B = \\{x \\mid x \\in A \\text{ or } x \\in B\\}$",
-                example: "A = {1, 2, 3}\nB = {2, 3, 4}\n$A \\cup B = \\{1, 2, 3, 4\\}$"
+                title: "Union (A ∪ B)",
+                syntax: "All elements in A, or B, or both.\nA ∪ B = {x ∣ x ∈ A or x ∈ B}",
+                example: "A = {1, 2, 3}\nB = {2, 3, 4}\nA ∪ B = {1, 2, 3, 4}"
             },
             {
-                title: "Intersection ($A \\cap B$)",
-                syntax: "Elements in both A and B.\n$A \\cap B = \\{x \\mid x \\in A \\text{ and } x \\in B\\}$",
-                example: "A = {1, 2, 3}\nB = {2, 3, 4}\n$A \\cap B = \\{2, 3\\}$"
+                title: "Intersection (A ∩ B)",
+                syntax: "Elements in both A and B.\nA ∩ B = {x ∣ x ∈ A and x ∈ B}",
+                example: "A = {1, 2, 3}\nB = {2, 3, 4}\nA ∩ B = {2, 3}"
             },
             {
-                title: "Difference ($A \\setminus B$)",
-                syntax: "Elements in A but not in B.\n$A \\setminus B = \\{x \\mid x \\in A \\text{ and } x \\notin B\\}$",
-                example: "A = {1, 2, 3}\nB = {2, 3, 4}\n$A \\setminus B = \\{1\\}$"
-            },
-            {
-                title: "Symmetric Difference ($A \\Delta B$)",
-                syntax: "Elements in A or B, but not both.\n$A \\Delta B = (A \\cup B) \\setminus (A \\cap B)$",
-                example: "A = {1, 2, 3}\nB = {2, 3, 4}\n$A \\Delta B = \\{1, 4\\}$"
-            },
-            {
-                title: "Complement ($A^c$ or $A'$)",
-                syntax: "Elements not in A (relative to a Universal Set U).\n$A^c = U \\setminus A$",
-                example: "U = {1, 2, 3, 4, 5}\nA = {1, 2}\n$A^c = \\{3, 4, 5\\}$"
-            },
-            {
-                title: "Subsets",
-                syntax: "$A \\subseteq B$ (A is a subset of B)\n$A \\subset B$ (A is a proper subset of B)",
-                example: "A = {1, 2}\nB = {1, 2, 3}\n$A \\subseteq B$ (True)\n$A \\subset B$ (True)\n$B \\subseteq A$ (False)"
-            },
-            {
-                title: "Power Set ($\\mathcal{P}(A)$)",
-                syntax: "The set of all subsets of A.\nIf $|A| = n$, then $|\\mathcal{P}(A)| = 2^n$.",
-                example: "A = {1, 2}\n$\\mathcal{P}(A) = \\{\\emptyset, \\{1\\}, \\{2\\}, \\{1, 2\\}\\}$"
-            },
-            {
-                title: "Cartesian Product ($A \\times B$)",
-                syntax: "The set of all ordered pairs (a, b) where $a \\in A$ and $b \\in B$.",
-                example: "A = {1, 2}\nB = {a, b}\n$A \\times B = \\{(1, a), (1, b), (2, a), (2, b)\\}$"
+                title: "Difference (A - B)",
+                syntax: "Elements in A but not in B.\nA \\ B = {x ∣ x ∈ A and x ∉ B}",
+                example: "A = {1, 2, 3}\nB = {2, 3, 4}\nA \\ B = {1}"
             },
 
+            {
+                title: "Subsets",
+                syntax: "A ⊆ B (A is a subset of B)\nA ⊂ B (A is a proper subset of B)",
+                example: "A = {1, 2}\nB = {1, 2, 3}\nA ⊆ B (True)\nA ⊂ B (True)\nB ⊆ A (False)"
+            },
+            {
+                title: "Cardinality (|A|)",
+                syntax: "The number of elements in a set A.\nWritten as |A|.",
+                example: "A = {a, b, c}\n|A| = 3\nB = {1, 2, 3, 4, 5}\n|B| = 5\n|∅| = 0"
+            },
+
+            {
+                title: "Power Set (p(A))",
+                syntax: "The set of all subsets of A.\nIf |A| = n, then |p(A)| = 2ⁿ.",
+                example: "A = {1, 2}\np(A) = {∅, {1}, {2}, {1, 2}}"
+            },
+            {
+                title: "Cartesian Product (A × B)",
+                syntax: "The set of all ordered pairs (a, b) where a ∈ A and b ∈ B.",
+                example: "A = {1, 2}\nB = {a, b}\nA × B = {(1, a), (1, b), (2, a), (2, b)}"
+            }
+        ]
+    },
+
+    "Logic": {
+        name: "Logic",
+        items: [
+            {
+                title: "Truth Tables (Basic)",
+                syntax: "P ∧ Q (Conjunction / AND)\nP ∨ Q (Disjunction / OR)\n¬P (Negation / NOT)\nP → Q (Implication)",
+                example: "P | Q | P ∧ Q | P ∨ Q | P → Q\n--|---|---|---|---\nT | T |   T   |   T   |   T\nT | F |   F   |   T   |   F\nF | T |   F   |   T   |   T\nF | F |   F   |   F   |   T"
+            },
+            {
+                title: "De Morgan's Laws",
+                syntax: "¬(P ∧ Q) ⇔ (¬P ∨ ¬Q)\n¬(P ∨ Q) ⇔ (¬P ∧ ¬Q)",
+                example: "// \"Not (A and B)\" is same as \"(Not A) or (Not B)\"\n// \"Not (A or B)\" is same as \"(Not A) and (Not B)\""
+            },
+            {
+                title: "Predicate Logic (Quantifiers)",
+                syntax: "∀x P(x) // \"For all x, P(x) is true\"\n∃x P(x) // \"There exists an x, P(x) is true\"",
+                example: "// \"All humans are mortal\"\n∀x (Human(x) → Mortal(x))\n\n// \"Some cats are black\"\n∃x (Cat(x) ∧ Black(x))"
+            },
+
+        ]
+    },
+
+    "Data Structures": {
+        name: "Data Structures",
+        items: [
+            {
+                title: "Singly Linked List",
+                syntax: "Node(value, next_pointer)\nList(head_pointer)",
+                example: "Head -> [A | *] -> [B | *] -> [C | null]"
+            },
+            {
+                title: "Doubly Linked List",
+                syntax: "Node(value, next_pointer, prev_pointer)",
+                example: "[null | A | *] <-> [* | B | *] <-> [* | C | null]"
+            },
+            {
+                title: "Stack (LIFO)",
+                syntax: "push(item) // Add to top\npop() // Remove from top\npeek() // View top",
+                example: "| C |  <- Top\n| B |\n| A |\n+---+"
+            },
+            {
+                title: "Queue (FIFO)",
+                syntax: "enqueue(item) // Add to rear\ndequeue() // Remove from front\npeek() // View front",
+                example: "Front -> [A] -> [B] -> [C] -> Rear"
+            },
+            {
+                title: "Binary Search Tree (BST)",
+                syntax: "Node(value, left, right)\nRule: left.value < value < right.value",
+                example: "    (10)\n   /    \\\n (5)      (15)\n/   \\    /    \\\n(3) (7)  (12)  (18)"
+            },
+            {
+                title: "Heap (Min-Heap)",
+                syntax: "Parent(i) <= Child(i)\n// Stored as array\nLeft(i) = 2*i + 1\nRight(i) = 2*i + 2",
+                example: "Array: [10, 15, 20, 17, 25]\n\n    (10)\n   /    \\\n (15)    (20)\n/    \\\n(17)  (25)"
+            },
+            {
+                title: "Hash Table",
+                syntax: "hash_function(key) -> index\n// Handles collisions (e.g., Chaining, Probing)",
+                example: "Key -> Hash() -> Index\n\"name\" -> 2341 -> 1  | 0 | ... |\n\"age\"  -> 5882 -> 2  | 1 | -> [\"name\", \"Damon\"]\n\"job\"  -> 4199 -> 3  | 2 | -> [\"age\", 25]\n                   | 3 | -> [\"job\", \"Coder\"]\n(Example uses Chaining)"
+            },
         ]
     },
 };
@@ -750,7 +823,7 @@ const allSubjects: Record<string, SubjectData> = {
 const navigationGroups = [
     {
         title: "Languages",
-        subjects: ["Python", "JavaScript", "TypeScript", "Go", "Java", "C", "C++"]
+        subjects: ["Python", "JavaScript", "TypeScript", "Go", "Java", "C", "C++", "Naming Conventions"]
     },
     {
         title: "Markup & Styling",
@@ -762,7 +835,7 @@ const navigationGroups = [
     },
     {
         title: "Maths",
-        subjects: ["Set Theory"]
+        subjects: ["Set Theory", "Logic", "Data Structures"]
     }
 ];
 
