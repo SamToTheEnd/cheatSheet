@@ -110,7 +110,7 @@ const allSubjects: Record<string, SubjectData> = {
             },
             {
                 title: "Arrays (fixed size)",
-                syntax: "var name [size]type\nname := [size]type{val1, val2, ...}",
+                syntax: "var name [size]type\nname := [size]type{val1, VAl2, ...}",
                 example: "var nums [3]int // [0, 0, 0]\n\nscores := [3]int{90, 85, 88}\nfmt.Println(scores[1]) // 85\n\n// Slices are (usually) preferred\ns := []int{1, 2, 3}"
             },
             {
@@ -151,7 +151,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Interfaces",
                 syntax: "type Name interface {\n    MethodName(params) returnType\n}",
-                example: "type Shape interface {\n    Area() float64\n}\n\ntype Rect struct { w, h float64 }\nfunc (r Rect) Area() float64 { return r.w * r.h }\n\nfunc PrintArea(s Shape) {\n    fmt.Println(s.Area())\n}"
+                example: "type Shape interface {\n    Area() float64\n}\n\ntype Rect struct { w, h float64 }\nfunc (r Rect) Area() float64 { return r.w * h }\n\nfunc PrintArea(s Shape) {\n    fmt.Println(s.Area())\n}"
             },
             {
                 title: "JSON (Marshal/Unmarshal)",
@@ -406,10 +406,331 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Case Styles",
                 syntax: "camelCase: first word lower, next words upper.\nPascalCase: All words upper.\nsnake_case: all words lower, joined by underscore.\nUPPER_SNAKE_CASE: all words upper, joined by underscore.\nkebab-case: all words lower, joined by hyphen.",
-                example: "// camelCase(JS/Java/Go vars, functions)\nlet myVariableName = \"Cases\";\n\n// PascalCase (Classes, Components)\nclass MyClassName {}\n\n// snake_case (Python vars, functions)\ndef my_function_name():\n  Cases\n\n// UPPER_SNAKE_CASE (Constants)\nconst NUMBER_OF_ALBUMS = 10;\n\n// kebab-case (CSS classes, HTML attributes)\n// <div class=\"my-css-class\"></div>"
+                example: "// camelCase(JS/Java/Go vars, functions)\nlet myVariableName = \"Cases\";\n\n// PascalCase (Classes, Components)\nclass MyClassName {}\n\n// snake_case (Python vars, functions)\ndef my_function_name():\n  pass\n\n// UPPER_SNAKE_CASE (Constants)\nconst NUMBER_OF_ALBUMS = 10;\n\n// kebab-case (CSS classes, HTML attributes)\n// <div class=\"my-css-class\"></div>"
             }
         ]
     },
+
+    // Libaries
+
+    "Python: Math": {
+        name: "Python: Math (math module)",
+        items: [
+            {
+                title: "Importing",
+                syntax: "import math\n\nfrom math import sqrt, pi",
+                example: "import math\n\nprint(math.pi) # 3.14159...\n\nfrom math import sqrt\nprint(sqrt(16)) # 4.0"
+            },
+            {
+                title: "Constants",
+                syntax: "math.pi\nmath.e\nmath.tau\nmath.inf",
+                example: "import math\nprint(f\"Pi: {math.pi}\")\nprint(f\"Euler's number: {math.e}\")\nprint(f\"Tau (2*pi): {math.tau}\")"
+            },
+            {
+                title: "Rounding",
+                syntax: "math.ceil(x)   // Round up\nmath.floor(x)  // Round down\nround(x, n)    // Built-in: round to n digits",
+                example: "import math\nx = 4.7\nprint(math.ceil(x))  # 5\nprint(math.floor(x)) # 4\n\nprint(round(3.14159, 2)) # 3.14"
+            },
+            {
+                title: "Powers & Logs",
+                syntax: "math.sqrt(x)\nmath.pow(x, y)  // x to the power of y (float)\nx ** y          // x to the power of y (native)\nmath.log(x, base)",
+                example: "import math\nprint(math.sqrt(64)) # 8.0\nprint(math.pow(2, 5)) # 32.0\nprint(2 ** 5)        # 32\nprint(math.log(100, 10)) # 2.0"
+            },
+        ]
+    },
+    "Python: Hashing": {
+        name: "Python: Hashing (hashlib)",
+        items: [
+            {
+                title: "SHA-256",
+                syntax: "import hashlib\n\nhash_obj = hashlib.sha256()\nhash_obj.update(b'data to hash')\nhex_digest = hash_obj.hexdigest()",
+                example: "import hashlib\n\ntext = \"Hello Python\"\n# Data must be bytes\nsha = hashlib.sha256(text.encode('utf-8'))\n\nprint(f\"Hex: {sha.hexdigest()}\")"
+            },
+            {
+                title: "SHA-512",
+                syntax: "hash_obj = hashlib.sha512(b'data').hexdigest()",
+                example: "import hashlib\n\nsha = hashlib.sha512(b\"A very secure password\")\nprint(sha.hexdigest())"
+            },
+            {
+                title: "MD5 (Insecure)",
+                syntax: "# WARNING: MD5 is insecure and should not be used for security.\n# Only use for checksums / non-crypto purposes.\nhash_obj = hashlib.md5(b'data').hexdigest()",
+                example: "import hashlib\n\nmd5 = hashlib.md5(b\"file_content_for_checksum\").hexdigest()\nprint(md5)"
+            },
+            {
+                title: "Updating Hash (Large Files)",
+                syntax: "hash_obj = hashlib.sha256()\nhash_obj.update(b'first chunk')\nhash_obj.update(b'second chunk')\nhash_obj.hexdigest()",
+                example: "import hashlib\n\nsha = hashlib.sha256()\nsha.update(b\"Part 1\")\nsha.update(b\"Part 2\")\n\nprint(sha.hexdigest())\n# Same as hashlib.sha256(b\"Part 1Part 2\").hexdigest()"
+            },
+        ]
+    },
+    "Go: fmt": {
+        name: "Go: fmt (Formatting)",
+        items: [
+            {
+                title: "Printing to Console",
+                syntax: "fmt.Print(a ...any)     // Print side-by-side\nfmt.Println(a ...any)   // Print with spaces & newline\nfmt.Printf(format, a ...any) // Print with format string",
+                example: "import \"fmt\"\n\nfunc main() {\n    fmt.Print(\"Hello, \")\n    fmt.Print(\"World!\\n\")\n    fmt.Println(\"Hello\", \"World\") // Hello World\n    fmt.Printf(\"User: %s, Age: %d\\n\", \"Alice\", 30)\n}"
+            },
+            {
+                title: "Formatting Verbs (Common)",
+                syntax: "%v  // Default format (value)\n%+v // Default format (w/ field names for structs)\n%#v // Go-syntax representation\n%T  // Type of the value\n%d  // Integer (base 10)\n%s  // String\n%f  // Float\n%t  // Boolean",
+                example: "import \"fmt\"\n\ntype User struct { Name string }\n\nfunc main() {\n    u := User{Name: \"Bob\"}\n    fmt.Printf(\"Value: %v\\n\", u)      // {Bob}\n    fmt.Printf(\"Value+: %+v\\n\", u)     // {Name:Bob}\n    fmt.Printf(\"Go-Syntax: %#v\\n\", u) // main.User{Name:\"Bob\"}\n    fmt.Printf(\"Type: %T\\n\", u)       // main.User\n}"
+            },
+            {
+                title: "Formatting to String (Sprintf)",
+                syntax: "s := fmt.Sprintf(format, a ...any)\n// Returns a formatted string",
+                example: "import \"fmt\"\n\nfunc main() {\n    name := \"Alice\"\n    age := 30\n    s := fmt.Sprintf(\"User %s is %d years old.\", name, age)\n    fmt.Println(s)\n    // Output: User Alice is 30 years old.\n}"
+            },
+            {
+                title: "Formatting to Writer (Fprintf)",
+                syntax: "fmt.Fprintf(w io.Writer, format, a ...any)\n// Writes formatted string to any io.Writer (e.g., os.Stdout, file)",
+                example: "import \"fmt\"\nimport \"os\"\n\nfunc main() {\n    // Write to Standard Error\n    fmt.Fprintf(os.Stderr, \"This is an error message!\\n\")\n\n    // Write to a file (see Go: File I/O)\n    f, _ := os.Create(\"log.txt\")\n    defer f.Close()\n    fmt.Fprintf(f, \"Log entry: %s\\n\", \"Server started\")\n}"
+            },
+        ]
+    },
+    "Go: File I/O (os, io)": {
+        name: "Go: File I/O (os, io)",
+        items: [
+            {
+                title: "Read File (Modern)",
+                syntax: "dat, err := os.ReadFile(filename)\n// Simple, reads entire file into memory.",
+                example: "package main\nimport (\n    \"fmt\"\n    \"os\"\n)\nfunc main() {\n    dat, err := os.ReadFile(\"test.txt\")\n    if err != nil {\n        panic(err)\n    }\n    fmt.Print(string(dat))\n}"
+            },
+            {
+                title: "Write File (Modern)",
+                syntax: "err := os.WriteFile(filename, data, perm)\n// Simple, writes byte slice to file.\n// perm: e.g., 0644",
+                example: "package main\nimport \"os\"\n\nfunc main() {\n    data := []byte(\"Hello, Go File I/O!\")\n    // 0644 = rw-r--r--\n    err := os.WriteFile(\"output.txt\", data, 0644)\n    if err != nil {\n        panic(err)\n    }\n}"
+            },
+            {
+                title: "Open & Read (Streaming)",
+                syntax: "f, err := os.Open(filename)\ndefer f.Close()\n\n// Read data in chunks\nb1 := make([]byte, 5)\nn1, err := f.Read(b1)",
+                example: "package main\nimport (\n    \"fmt\"\n    \"io\"\n    \"os\"\n)\nfunc main() {\n    f, err := os.Open(\"test.txt\")\n    if err != nil { panic(err) }\n    defer f.Close()\n\n    buf := make([]byte, 1024)\n    for {\n        n, err := f.Read(buf)\n        if err == io.EOF { break }\n        if err != nil { panic(err) }\n        fmt.Print(string(buf[:n]))\n    }\n}"
+            },
+            {
+                title: "Create & Write (Streaming)",
+                syntax: "f, err := os.Create(filename)\ndefer f.Close()\n\nn, err := f.WriteString(\"Hello, \")\nn, err = f.Write([]byte(\"World!\"))",
+                example: "package main\nimport (\n    \"fmt\"\n    \"os\"\n)\nfunc main() {\n    f, err := os.Create(\"output.txt\")\n    if err != nil { panic(err) }\n    defer f.Close()\n\n    n, err := f.WriteString(\"Writing line by line.\\n\")\n    if err != nil { panic(err) }\n    fmt.Printf(\"Wrote %d bytes\\n\", n)\n\n    f.Sync() // Flush writes to stable storage\n}"
+            },
+        ]
+    },
+    "Go: Hashing": {
+        name: "Go: Hashing (crypto/*)",
+        items: [
+            {
+                title: "SHA-256 (Simple)",
+                syntax: "import \"crypto/sha256\"\nimport \"fmt\"\n\ndata := []byte(\"text\")\nhash := sha256.Sum256(data)\nfmt.Printf(\"%x\", hash)",
+                example: "package main\nimport (\n    \"crypto/sha256\"\n    \"fmt\"\n)\n\nfunc main() {\n    s := \"Hello Go\"\n    h := sha256.Sum256([]byte(s))\n    fmt.Printf(\"%x\\n\", h)\n}"
+            },
+            {
+                title: "SHA-512 (Simple)",
+                syntax: "import \"crypto/sha512\"\n\ndata := []byte(\"text\")\nhash := sha512.Sum512(data)",
+                example: "package main\nimport (\n    \"crypto/sha512\"\n    \"fmt\"\n)\n\nfunc main() {\n    h := sha512.Sum512([]byte(\"secure data\"))\n    fmt.Printf(\"%x\\n\", h)\n}"
+            },
+            {
+                title: "Hashing (Streaming)",
+                syntax: "import \"crypto/sha1\"\nimport \"io\"\n\nh := sha1.New()\nio.WriteString(h, \"first chunk\")\nio.WriteString(h, \"second chunk\")\nsum := h.Sum(nil)",
+                example: "package main\nimport (\n    \"crypto/sha256\"\n    \"fmt\"\n    \"io\"\n)\n\nfunc main() {\n    h := sha256.New()\n    io.WriteString(h, \"This is \")\n    io.WriteString(h, \"a stream.\")\n    sum := h.Sum(nil)\n    fmt.Printf(\"%x\\n\", sum)\n}"
+            },
+        ]
+    },
+    "Go: Crypto (Lattigo)": {
+        name: "Go: Lattigo (Homomorphic)",
+        items: [
+            {
+                title: "Homomorphic Encryption",
+                syntax: "import \"github.com/tuneinsight/lattigo/v5/core/rlwe\"\n\n// Lattigo is a library for Homomorphic Encryption.\n// It allows computations on encrypted data.",
+                example: "// Conceptual: Not runnable without full setup\npackage main\n\nimport (\n    \"github.com/tuneinsight/lattigo/v5/schemes/bfv\"\n    \"log\"\n)\n\nfunc main() {\n    // 1. Get parameters\n    params, err := bfv.NewParametersFromLiteral(bfv.PN12QP109)\n    if err != nil { log.Fatal(err) }\n\n    // 2. Setup (keys, encryptor, evaluator...)\n    // ... (complex setup omitted)\n\n    log.Println(\"Lattigo setup complete.\")\n    // 3. Encrypt, Evaluate, Decrypt...\n}"
+            },
+            {
+                title: "PKE (Public Key Encryption)",
+                syntax: "// Lattigo uses PKE schemes (like BFV, CKKS) built on LWE/RLWE.\n// KeyGen -> pk, sk\n// Encrypt(pk, plaintext) -> ciphertext\n// Decrypt(sk, ciphertext) -> plaintext",
+                example: "// Conceptual Example (BFV Scheme)\nparams, _ := bfv.NewParametersFromLiteral(bfv.PN12QP109)\nkgen := bfv.NewKeyGenerator(params)\nsk, pk := kgen.GenKeyPair()\n\nencryptor := bfv.NewEncryptor(params, pk)\ndecryptor := bfv.NewDecryptor(params, sk)\n\npt := bfv.NewPlaintext(params, 1)\nct, _ := encryptor.Encrypt(pt)\n\nptOut, _ := decryptor.Decrypt(ct)\n// ptOut.Value[0] == 1"
+            },
+            {
+                title: "LWE (Learning With Errors)",
+                syntax: "// Core problem: LWE\n// Given (A, b = As + e), find s.\n// 'A' is a random matrix, 's' is the secret, 'e' is small 'error'.\n// Hard to solve for 's'. This hardness is the basis for security.",
+                example: "// Lattigo abstracts this away, but it's the foundation.\n// LWE is used to build PKE schemes.\n// Lattigo schemes (BFV, CKKS) are typically based on\n// RLWE (Ring Learning With Errors), a more efficient\n// variant of LWE that works on polynomials."
+            },
+            {
+                title: "Sampling (Gaussian)",
+                syntax: "// Lattigo's security relies on sampling noise (errors)\n// from a specific distribution, usually Gaussian.\nimport \"github.com/tuneinsight/lattigo/v5/utils/sampling\"\n\n// (prng = *utils.KeyedPRNG, params = bfv.Parameters)\ngaussian, _ := sampling.NewGaussianSampler(prng, params)\n// ... use sampler to add noise",
+                example: "// This is usually handled internally by Lattigo's\n// encryptors and evaluators.\n\n// e.g., during encryption:\n// ciphertext = pk * u + (plaintext + e1)\n// 'e1' is small error/noise sampled from a\n// Gaussian distribution."
+            },
+        ]
+    },
+
+    // Fraemworks
+    "React": {
+        name: "React",
+        items: [
+            {
+                title: "Project Initialisation (Vite)",
+                syntax: "# Install with npm\nnpm create vite@latest my-react-app -- --template react\n\n# Install with yarn\nyarn create vite my-react-app --template react",
+                example: "$ npm create vite@latest my-react-app -- --template react\n$ cd my-react-app\n$ npm install\n$ npm run dev"
+            },
+            {
+                title: "Component with State (useState)",
+                syntax: "import React, { useState } from 'react';\n\nfunction MyComponent() {\n    const [count, setCount] = useState(0);\n    return <div onClick={() => setCount(c => c+1)}>{count}</div>\n}",
+                example: "import React, { useState } from 'react';\n\nfunction Counter() {\n    // state: count, fn to update: setCount\n    const [count, setCount] = useState(0);\n\n    return (\n        <div>\n            <p>You clicked {count} times</p>\n            <button onClick={() => setCount(count + 1)}>\n                Click me\n            </button>\n        </div>\n    );\n}"
+            },
+            {
+                title: "Side Effects (useEffect)",
+                syntax: "import { useEffect } from 'react';\n\nuseEffect(() => {\n    // Runs after every render\n    return () => {\n        // Optional cleanup function\n    }\n}, [dependencyArray]);",
+                example: "import React, { useState, useEffect } from 'react';\n\nfunction DocTitleUpdater() {\n    const [count, setCount] = useState(0);\n\n    // Runs only when 'count' changes\n    useEffect(() => {\n        document.title = `Count: ${count}`;\n        console.log('Title updated!');\n    }, [count]);\n\n    return <button onClick={() => setCount(c => c + 1)}>{count}</button>;\n}"
+            },
+            {
+                title: "Props & Composition",
+                syntax: "// Parent Component\n<ChildComponent name=\"Alice\" />\n\n// Child Component\nfunction ChildComponent(props) {\n    return <h1>Hello, {props.name}</h1>\n}\n// or with destructuring:\n// function ChildComponent({ name }) { ... }",
+                example: "// Child\nfunction Welcome(props) {\n    return <h2>Hello, {props.user}</h2>;\n}\n\n// Parent\nfunction App() {\n    return (\n        <div>\n            <Welcome user=\"Alice\" />\n            <Welcome user=\"Bob\" />\n        </div>\n    );\n}"
+            },
+            {
+                title: "Conditional Rendering",
+                syntax: "function MyComponent({ isLoggedIn }) {\n    if (isLoggedIn) {\n        return <AdminPanel />;\n    }\n    return <LoginForm />;\n}\n\n// Or with ternary operator:\n// {isLoggedIn ? <AdminPanel /> : <LoginForm />}",
+                example: "import React, { useState } from 'react';\n\nfunction AuthButton() {\n    const [isLoggedIn, setIsLoggedIn] = useState(false);\n\n    const handleClick = () => setIsLoggedIn(!isLoggedIn);\n\n    return (\n        <button onClick={handleClick}>\n            {isLoggedIn ? 'Log Out' : 'Log In'}\n        </button>\n    );\n}"
+            },
+        ]
+    },
+    "Python: Flask": {
+        name: "Python: Flask",
+        items: [
+            {
+                title: "Project Initialisation (venv)",
+                syntax: "# 1. Create a virtual environment\npython -m venv venv\n# 2. Activate it\n# Windows: .\\venv\\Scripts\\activate\n# Unix/Mac: source venv/bin/activate\n# 3. Install Flask\npip install Flask",
+                example: "$ python -m venv venv\n$ source venv/bin/activate\n(venv) $ pip install Flask\n(venv) $ echo \"from flask import Flask\napp = Flask(__name__)\n@app.route('/')\ndef h(): return 'Hi'\" > app.py\n(venv) $ flask --app app run"
+            },
+            {
+                title: "Basic App",
+                syntax: "from flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Hello, World!'\n\n# Run: flask --app <filename> run",
+                example: "# app.py\nfrom flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef home():\n    return 'Hello, Flask!'\n\n# Run in terminal: flask --app app run"
+            },
+            {
+                title: "Routing with Variables",
+                syntax: "@app.route('/user/<username>')\ndef profile(username):\n    return f'User: {username}'",
+                example: "from flask import escape\n\n@app.route('/post/<int:post_id>')\ndef show_post(post_id):\n    # post_id is automatically an integer\n    return f'Post Number: {post_id}'\n\n@app.route('/path/<path:subpath>')\ndef show_subpath(subpath):\n    # Shows path: /path/hello/world\n    return f'Subpath: {escape(subpath)}'"
+            },
+            {
+                title: "Rendering Templates",
+                syntax: "from flask import render_template\n\n@app.route('/hello/')\n@app.route('/hello/<name>')\ndef hello(name=None):\n    return render_template('hello.html', name=name)",
+                example: "# app.py\nfrom flask import Flask, render_template\napp = Flask(__name__)\n\n@app.route('/<name>')\ndef index(name):\n    # Looks for 'index.html' in 'templates' folder\n    return render_template('index.html', user_name=name)\n\n# templates/index.html\n# <!DOCTYPE html>\n# <h1>Hello, {{ user_name }}!</h1>"
+            },
+            {
+                title: "Request Object (GET/POST)",
+                syntax: "from flask import request\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        user = request.form['username']\n        return f'Hello {user}'\n    else:\n        query = request.args.get('q')\n        return f'Searching for {query}'",
+                example: "# POST to /login with form data: username=Alice\n# -> Returns 'Hello Alice'\n\n# GET /login?q=test\n# -> Returns 'Searching for test'"
+            },
+            {
+                title: "Returning JSON",
+                syntax: "from flask import jsonify\n\n@app.route('/api/user')\ndef get_user():\n    user_data = {'id': 1, 'name': 'Damon'}\n    return jsonify(user_data)\n    # or just: return user_data (Flask auto-jsonifies dicts)",
+                example: "@app.route('/api/data')\ndef api_data():\n    return {\n        \"status\": \"ok\",\n        \"items\": [\"a\", \"b\", \"c\"]\n    }\n# Returns HTTP 200 with Content-Type: application/json"
+            },
+        ]
+    },
+    "Python: FastAPI": {
+        name: "Python: FastAPI",
+        items: [
+            {
+                title: "Project Initialisation (venv)",
+                syntax: "# 1. Create a virtual environment\npython -m venv venv\n# 2. Activate it\n# Windows: .\\venv\\Scripts\\activate\n# Unix/Mac: source venv/bin/activate\n# 3. Install FastAPI and a server (uvicorn)\npip install fastapi uvicorn[standard]",
+                example: "$ python -m venv venv\n$ source venv/bin/activate\n(venv) $ pip install fastapi uvicorn[standard]\n(venv) $ echo \"from fastapi import FastAPI\napp = FastAPI()\n@app.get('/')\nasync def r(): return {'m':'hi'}\" > main.py\n(venv) $ uvicorn main:app --reload"
+            },
+            {
+                title: "Basic App",
+                syntax: "from fastapi import FastAPI\napp = FastAPI()\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n\n# Run: uvicorn <filename>:app --reload",
+                example: "# main.py\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello, FastAPI!\"}\n\n# Run in terminal: uvicorn main:app --reload"
+            },
+            {
+                title: "Path Parameters",
+                syntax: "@app.get(\"/items/{item_id}\")\nasync def read_item(item_id: int):\n    return {\"item_id\": item_id}",
+                example: "# main.py\nfrom fastapi import FastAPI\napp = FastAPI()\n\n@app.get(\"/users/{user_id}\")\nasync def get_user(user_id: int):\n    # Type hint `int` provides validation\n    # Try /users/abc -> will return error\n    return {\"user_id\": user_id, \"name\": f\"User {user_id}\"}"
+            },
+            {
+                title: "Query Parameters",
+                syntax: "@app.get(\"/items/\")\nasync def read_item(skip: int = 0, limit: int = 10):\n    return {\"skip\": skip, \"limit\": limit}",
+                example: "# main.py\nfrom fastapi import FastAPI\napp = FastAPI()\n\n# Call with: /search?q=myquery&page=2\n@app.get(\"/search\")\nasync def search(q: str, page: int = 1):\n    return {\"query\": q, \"page_number\": page}"
+            },
+            {
+                title: "Request Body (Pydantic)",
+                syntax: "from pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    return item",
+                example: "from fastapi import FastAPI\nfrom pydantic import BaseModel\n\nclass User(BaseModel):\n    username: str\n    email: str | None = None\n\napp = FastAPI()\n\n@app.post(\"/users/\")\nasync def create_user(user: User):\n    # POST with JSON: {\"username\": \"alice\"}\n    return {\"status\": \"created\", \"user\": user.username}"
+            },
+            {
+                title: "Status Codes",
+                syntax: "from fastapi import status\n\n@app.post(\"/items/\", status_code=status.HTTP_201_CREATED)\nasync def create_item(item: Item):\n    return item",
+                example: "from fastapi import FastAPI, status, Response\n\napp = FastAPI()\n\n@app.get(\"/items/{id}\")\nasync def get_item(id: int, response: Response):\n    if id > 100:\n        response.status_code = status.HTTP_404_NOT_FOUND\n        return {\"error\": \"Item not found\"}\n    return {\"id\": id}"
+            },
+        ]
+    },
+    "Go: Gin": {
+        name: "Go: Gin",
+        items: [
+            {
+                title: "Project Initialisation (go mod)",
+                syntax: "# 1. Create a project directory\nmkdir my-gin-app\ncd my-gin-app\n# 2. Initialize Go module\ngo mod init example.com/my-gin-app\n# 3. Get Gin dependency\ngo get -u github.com/gin-gonic/gin",
+                example: "$ mkdir hello-gin\n$ cd hello-gin\n$ go mod init example.com/hello-gin\n$ go get -u github.com/gin-gonic/gin\n# Create main.go with Gin code...\n$ go run main.go"
+            },
+            {
+                title: "Basic App",
+                syntax: "import \"github.com/gin-gonic/gin\"\n\nfunc main() {\n    r := gin.Default()\n    r.GET(\"/ping\", func(c *gin.Context) {\n        c.JSON(200, gin.H{\"message\": \"pong\"})\n    })\n    r.Run() // :8080\n}",
+                example: "package main\nimport \"github.com/gin-gonic/gin\"\n\nfunc main() {\n    r := gin.Default()\n    r.GET(\"/\", func(c *gin.Context) {\n        c.String(200, \"Hello, Gin!\")\n    })\n    r.Run(\":8080\")\n}"
+            },
+            {
+                title: "Path Parameters",
+                syntax: "r.GET(\"/user/:name\", func(c *gin.Context) {\n    name := c.Param(\"name\")\n    c.String(200, \"Hello %s\", name)\n})",
+                example: "package main\nimport \"github.com/gin-gonic/gin\"\n\nfunc main() {\n    r := gin.Default()\n    // GET /user/alice\n    r.GET(\"/user/:name\", func(c *gin.Context) {\n        name := c.Param(\"name\")\n        c.JSON(200, gin.H{\n            \"user\": name,\n            \"id\": 123,\n        })\n    })\n    r.Run(\":8080\")\n}"
+            },
+            {
+                title: "Query Parameters",
+                syntax: "r.GET(\"/welcome\", func(c *gin.Context) {\n    firstname := c.DefaultQuery(\"firstname\", \"Guest\")\n    lastname := c.Query(\"lastname\")\n    c.String(200, \"Hello %s %s\", firstname, lastname)\n})",
+                example: "package main\nimport \"github.com/gin-gonic/gin\"\n\nfunc main() {\n    r := gin.Default()\n    // GET /search?q=books&page=1\n    r.GET(\"/search\", func(c *gin.Context) {\n        query := c.Query(\"q\")\n        page := c.DefaultQuery(\"page\", \"1\")\n\n        c.JSON(200, gin.H{\n            \"query\": query,\n            \"page\": page,\n        })\n    })\n    r.Run(\":8080\")\n}"
+            },
+            {
+                title: "Binding JSON (POST)",
+                syntax: "type Login struct {\n    User     string `json:\"user\" binding:\"required\"`\n    Password string `json:\"password\" binding:\"required\"`\n}\n\nr.POST(\"/login\", func(c *gin.Context) {\n    var json Login\n    if err := c.ShouldBindJSON(&json); err != nil {\n        c.JSON(400, gin.H{\"error\": err.Error()})\n        return\n    }\n    c.JSON(200, gin.H{\"status\": \"logged in\"})\n})",
+                example: "package main\nimport \"github.com/gin-gonic/gin\"\n\ntype Person struct {\n    Name string `json:\"name\" binding:\"required\"`\n    Age  int    `json:\"age\"`\n}\n\nfunc main() {\n    r := gin.Default()\n    r.POST(\"/users\", func(c *gin.Context) {\n        var p Person\n        if err := c.ShouldBindJSON(&p); err != nil {\n            c.JSON(400, gin.H{\"error\": \"Bad request\"})\n            return\n        }\n        c.JSON(201, gin.H{\"message\": p.Name + \" created\"})\n    })\n    r.Run(\":8080\")\n}"
+            },
+            {
+                title: "Middleware (Basic)",
+                syntax: "r := gin.Default() // Default() includes Logger and Recovery\n\n// Custom middleware\nr.Use(func(c *gin.Context) {\n    fmt.Println(\"Request received!\")\n    c.Next() // Pass control to the next handler\n})",
+                example: "package main\nimport (\n    \"fmt\"\n    \"github.com/gin-gonic/gin\"\n    \"time\"\n)\n\nfunc Logger() gin.HandlerFunc {\n    return func(c *gin.Context) {\n        t := time.Now()\n        c.Next()\n        latency := time.Since(t)\n        fmt.Printf(\"%s %s in %v\\n\", c.Request.Method, c.Request.URL.Path, latency)\n    }\n}\n\nfunc main() {\n    r := gin.New() // New() is empty\n    r.Use(Logger()) // Use our custom logger\n    r.GET(\"/ping\", func(c *gin.Context) {\n        c.JSON(200, gin.H{\"message\": \"pong\"})\n    })\n    r.Run(\":8080\")\n}"
+            },
+        ]
+    },
+    "Go: Echo": {
+        name: "Go: Echo",
+        items: [
+            {
+                title: "Project Initialisation (go mod)",
+                syntax: "# 1. Create a project directory\nmkdir my-echo-app\ncd my-echo-app\n# 2. Initialize Go module\ngo mod init example.com/my-echo-app\n# 3. Get Echo dependency\ngo get -u github.com/labstack/echo/v4",
+                example: "$ mkdir hello-echo\n$ cd hello-echo\n$ go mod init example.com/hello-echo\n$ go get -u github.com/labstack/echo/v4\n# Create main.go with Echo code...\n$ go run main.go"
+            },
+            {
+                title: "Basic App",
+                syntax: "import (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n)\nfunc main() {\n    e := echo.New()\n    e.GET(\"/\", func(c echo.Context) error {\n        return c.String(http.StatusOK, \"Hello, World!\")\n    })\n    e.Logger.Fatal(e.Start(\":1323\"))\n}",
+                example: "package main\nimport (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n)\nfunc main() {\n    e := echo.New()\n    e.GET(\"/\", func(c echo.Context) error {\n        return c.String(http.StatusOK, \"Hello, Echo!\")\n    })\n    e.Logger.Fatal(e.Start(\":1323\"))\n}"
+            },
+            {
+                title: "Path Parameters",
+                syntax: "e.GET(\"/users/:id\", getUser)\n\nfunc getUser(c echo.Context) error {\n    id := c.Param(\"id\")\n    return c.String(http.StatusOK, id)\n}",
+                example: "package main\nimport (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n)\n// GET /users/alice\nfunc getUser(c echo.Context) error {\n    name := c.Param(\"name\")\n    return c.JSON(http.StatusOK, map[string]string{\n        \"user\": name,\n    })\n}\n\nfunc main() {\n    e := echo.New()\n    e.GET(\"/users/:name\", getUser)\n    e.Logger.Fatal(e.Start(\":1323\"))\n}"
+            },
+            {
+                title: "Query Parameters",
+                syntax: "e.GET(\"/show\", show)\n\nfunc show(c echo.Context) error {\n    team := c.QueryParam(\"team\")\n    member := c.QueryParam(\"member\")\n    return c.String(http.StatusOK, \"team:\" + team + \", member:\" + member)\n}",
+                example: "package main\nimport (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n)\n// GET /search?q=books\nfunc search(c echo.Context) error {\n    query := c.QueryParam(\"q\")\n    return c.JSON(http.StatusOK, map[string]string{\n        \"searching_for\": query,\n    })\n}\n\nfunc main() {\n    e := echo.New()\n    e.GET(\"/search\", search)\n    e.Logger.Fatal(e.Start(\":1323\"))\n}"
+            },
+            {
+                title: "Binding Data (JSON/Form)",
+                syntax: "type User struct {\n    Name  string `json:\"name\" form:\"name\"`\n    Email string `json:\"email\" form:\"email\"`\n}\n\ne.POST(\"/users\", func(c echo.Context) error {\n    u := new(User)\n    if err := c.Bind(u); err != nil {\n        return echo.NewHTTPError(http.StatusBadRequest, err.Error())\n    }\n    return c.JSON(http.StatusCreated, u)\n})",
+                example: "package main\nimport (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n)\ntype User struct {\n    Name string `json:\"name\"`\n}\n\nfunc createUser(c echo.Context) error {\n    u := new(User)\n    if err := c.Bind(u); err != nil {\n        return err\n    }\n    return c.JSON(http.StatusCreated, u)\n}\n\nfunc main() {\n    e := echo.New()\n    e.POST(\"/users\", createUser)\n    e.Logger.Fatal(e.Start(\":1323\"))\n}"
+            },
+            {
+                title: "Middleware (Logging)",
+                syntax: "import \"github.com/labstack/echo/v4/middleware\"\n\ne := echo.New()\n// DefaultWithConfig provides simple logging\ne.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{\n    Format: \"method=${method}, uri=${uri}, status=${status}\\n\",\n}))",
+                example: "package main\nimport (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n    \"github.com/labstack/echo/v4/middleware\"\n)\n\nfunc main() {\n    e := echo.New()\n    // Use the built-in Logger middleware\n    e.Use(middleware.Logger())\n    // Use the built-in Recover middleware\n    e.Use(middleware.Recover())\n\n    e.GET(\"/\", func(c echo.Context) error {\n        return c.String(http.StatusOK, \"Hello, Echo!\")\n    })\n    e.Logger.Fatal(e.Start(\":1323\"))\n}"
+            },
+        ]
+    },
+
 
     // Markup & Styling
     "HTML": {
@@ -591,7 +912,7 @@ const allSubjects: Record<string, SubjectData> = {
                 example: "The equation is $E = m c^2$.\n\n$[ \n  f(x) = sum_(i=0)^n x_i \n]$"
             },
             {
-                title: "Code Blocks (Fenced)",
+                title: "Code Blocks",
                 syntax: "```language\ncode block\n```",
                 example: "```python\ndef hello():\n    print(\"Hello, world!\")\n```"
             },
@@ -826,6 +1147,14 @@ const navigationGroups = [
         subjects: ["Python", "JavaScript", "TypeScript", "Go", "Java", "C", "C++", "Naming Conventions"]
     },
     {
+        title: "Libraries",
+        subjects: ["Python: Math", "Python: Hashing", "Go: fmt", "Go: File I/O (os, io)", "Go: Hashing", "Go: Crypto (Lattigo)"]
+    },
+    {
+        title: "Frameworks",
+        subjects: ["React", "Python: Flask", "Python: FastAPI", "Go: Gin", "Go: Echo"]
+    },
+    {
         title: "Markup & Styling",
         subjects: ["HTML", "CSS", "Markdown", "Typst"]
     },
@@ -973,7 +1302,13 @@ const CheatSheetApp: React.FC = () => {
                 ))}
             </nav>
 
-            <CheatSheetDisplay subject={currentSubjectData} onCardClick={openModal} />
+            {currentSubjectData ? (
+                <CheatSheetDisplay subject={currentSubjectData} onCardClick={openModal} />
+            ) : (
+                <main className="main-content">
+                    <h2 className="subject-title">No subject selected</h2>
+                </main>
+            )}
 
             {modalContent && <Modal item={modalContent} onClose={closeModal} />}
         </div>
