@@ -24,12 +24,12 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Variables & Data Types",
                 syntax: "variable_name = value\n# Types: int, float, str, bool, list, tuple, dict, set",
-                example: "name = \"Alice\"  # string\nage = 25  # integer\nheight = 5.9  # float\nis_active = True  # boolean\nscores = [90, 85, 88]  # list\npoint = (10, 20)  # tuple\nuser = {'name': 'Bob', 'age': 30}  # dict"
+                example: "name = \"Damon\"  # string\nage = 23  # integer\nheight = 5.8  # float\nis_active = True  # boolean\nscores = [90, 85, 88]  # list\npoint = (10, 20)  # tuple\nuser = {'name': 'Damon', 'age': 30}  # dict"
             },
             {
                 title: "String Manipulation (f-strings)",
                 syntax: "f\"...{expression}...\"\nstr.upper(), str.lower(), str.strip()\nstr.split(delimiter)",
-                example: "name = \"Alice\"\nage = 25\nprint(f\"Name: {name}, Age: {age}\")\n\n' hello '.strip()  # 'hello'\n'a,b,c'.split(',')  # ['a', 'b', 'c']"
+                example: "name = \"Damon\"\nage = 25\nprint(f\"Name: {name}, Age: {age}\")\n\n' Plant '.strip()  # 'hello'\n'a,b,c'.split(',')  # ['a', 'b', 'c']"
             },
             {
                 title: "List Methods & Slicing",
@@ -39,7 +39,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Dictionary Methods",
                 syntax: "my_dict.get(key, default)\nmy_dict.keys()\nmy_dict.values()\nmy_dict.items()",
-                example: "user = {'name': 'Alice', 'age': 25}\nuser.get('age')      # 25\nuser.get('job', 'N/A') # 'N/A'\nuser.keys()      # ['name', 'age']\nuser.items()     # [('name', 'Alice'), ('age', 25)]"
+                example: "user = {'name': 'Damon', 'age': 25}\nuser.get('age')      # 25\nuser.get('job', 'N/A') # 'N/A'\nuser.keys()      # ['name', 'age']\nuser.items()     # [('name', 'Damon'), ('age', 25)]"
             },
             {
                 title: "List Comprehensions",
@@ -95,7 +95,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Variables & Constants",
                 syntax: "var name type = value\nname := value\nconst NAME = value",
-                example: "var name string = \"Alice\"\nage := 25\nvar isActive bool = true\nconst Pi = 3.14159"
+                example: "var name string = \"Damon\"\nage := 25\nvar isActive bool = true\nconst Pi = 3.14159"
             },
             {
                 title: "Pointers",
@@ -120,7 +120,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Maps",
                 syntax: "m := make(map[keyType]valueType)\nm[key] = value\ndelete(m, key)\nval, ok := m[key]",
-                example: "ages := make(map[string]int)\nages[\"alice\"] = 30\n\nval, ok := ages[\"bob\"]\nif !ok {\n    fmt.Println(\"Bob not found\")\n}"
+                example: "ages := make(map[string]int)\nages[\"Damon\"] = 30\n\nval, ok := ages[\"bob\"]\nif !ok {\n    fmt.Println(\"Graham not found\")\n}"
             },
             {
                 title: "Loops (for & for-range)",
@@ -176,7 +176,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Variables & Basic Types",
                 syntax: "let name: type = value;\n// Types: string, number, boolean, any, null, undefined",
-                example: "let name: string = \"Alice\";\nconst age: number = 25;\nlet isStudent: boolean = true;\nlet hobbies: string[] = [\"Reading\", \"Music\"];"
+                example: "let name: string = \"Damon\";\nconst age: number = 25;\nlet isStudent: boolean = true;\nlet hobbies: string[] = [\"Reading\", \"Music\"];"
             },
             {
                 title: "Interfaces & Types",
@@ -216,7 +216,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Variables (var, let, const)",
                 syntax: "var variableName = value; // Function-scoped\nlet blockScopedVar = value; // Block-scoped\nconst constantVar = value; // Block-scoped, read-only",
-                example: "var oldVar = 'Old'; // Avoid\nlet age = 30;\nage = 31; // OK\nconst name = 'Alice';\n// name = 'Bob'; // Error: Assignment to constant variable."
+                example: "var oldVar = 'Old'; // Avoid\nlet age = 30;\nage = 31; // OK\nconst name = 'Damon';\n// name = 'Graham'; // Error: Assignment to constant variable."
             },
             {
                 title: "Data Types",
@@ -231,7 +231,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Objects",
                 syntax: "const obj = {\n    key: value,\n    method() { ... }\n};\nobj.key // access\nobj['key'] // access",
-                example: "const person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    greet() {\n        return `Hi, I'm ${this.firstName}`;\n    }\n};\nconsole.log(person.firstName);\nconsole.log(person.greet());"
+                example: "const person = {\n    firstName: 'Damon',\n    lastName: 'Albarn',\n    greet() {\n        return `Hi, I'm ${this.firstName}`;\n    }\n};\nconsole.log(person.firstName);\nconsole.log(person.greet());"
             },
             {
                 title: "Array Methods",
@@ -262,7 +262,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Variables & Data Types",
                 syntax: "type variableName = value;\n// Primitives: int, double, boolean, char\n// Objects: String, Array, etc.",
-                example: "int age = 25;\ndouble price = 19.99;\nboolean isActive = true;\nchar grade = 'A';\nString name = \"Alice\";"
+                example: "int age = 25;\ndouble price = 19.99;\nboolean isActive = true;\nchar grade = 'A';\nString name = \"Damon\";"
             },
             {
                 title: "Methods",
@@ -357,7 +357,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Variables & Types",
                 syntax: "type name = value;\n// Types: int, double, float, char, bool, std::string",
-                example: "int age = 25;\ndouble pi = 3.14159;\nchar grade = 'A';\nbool is_active = true;\nstd::string name = \"Alice\";"
+                example: "int age = 25;\ndouble pi = 3.14159;\nchar grade = 'A';\nbool is_active = true;\nstd::string name = \"Damon\";"
             },
             {
                 title: "Classes & Objects",
