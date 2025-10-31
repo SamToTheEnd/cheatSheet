@@ -411,7 +411,7 @@ const allSubjects: Record<string, SubjectData> = {
         ]
     },
 
-    // Libaries
+    // Libraries
 
     "Python: Math": {
         name: "Python: Math (math module)",
@@ -730,6 +730,51 @@ const allSubjects: Record<string, SubjectData> = {
             },
         ]
     },
+    "Spring Boot": {
+        name: "Spring Boot",
+        items: [
+            {
+                title: "Project Initialisation (Initializr)",
+                syntax: "https://start.spring.io\n\n# Dependencies: 'Spring Web', 'Spring Boot DevTools'",
+                example: "// 1. Go to start.spring.io\n// 2. Choose Maven or Gradle\n// 3. Add 'Spring Web' dependency\n// 4. Click 'Generate'\n// 5. Unzip and open in your IDE"
+            },
+            {
+                title: "Basic Application",
+                syntax: "@SpringBootApplication\npublic class DemoApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(DemoApplication.class, args);\n    }\n}",
+                example: "package com.example.demo;\n\nimport org.springframework.boot.SpringApplication;\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\n\n@SpringBootApplication\npublic class DemoApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(DemoApplication.class, args);\n    }\n}"
+            },
+            {
+                title: "REST Controller",
+                syntax: "import org.springframework.web.bind.annotation.RestController;\nimport org.springframework.web.bind.annotation.GetMapping;\n\n@RestController\npublic class MyController {\n    @GetMapping(\"/\")\n    public String home() {\n        return \"Hello, Spring!\";\n    }\n}",
+                example: "import org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\n@RestController\npublic class HelloController {\n    @GetMapping(\"/hello\")\n    public String hello() {\n        return \"Greetings from Spring Boot!\";\n    }\n}"
+            },
+            {
+                title: "Path Parameters (@PathVariable)",
+                syntax: "@GetMapping(\"/users/{id}\")\npublic String getUser(@PathVariable Long id) {\n    return \"User ID: \" + id;\n}",
+                example: "import org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.PathVariable;\nimport org.springframework.web.bind.annotation.RestController;\n\n@RestController\npublic class ProductController {\n    @GetMapping(\"/products/{productId}\")\n    public String getProduct(@PathVariable(\"productId\") String pId) {\n        // GET /products/abc-123\n        return \"Showing product: \" + pId;\n    }\n}"
+            },
+            {
+                title: "Query Parameters (@RequestParam)",
+                syntax: "@GetMapping(\"/search\")\npublic String search(@RequestParam String q) {\n    return \"Searching for: \" + q;\n}",
+                example: "import org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RequestParam;\nimport org.springframework.web.bind.annotation.RestController;\n\n@RestController\npublic class ItemController {\n    @GetMapping(\"/api/items\")\n    public String getItems(\n        @RequestParam(value = \"page\", defaultValue = \"0\") int page\n    ) {\n        // GET /api/items?page=2\n        return \"Fetching items for page: \" + page;\n    }\n}"
+            },
+            {
+                title: "Request Body (@RequestBody)",
+                syntax: "// POJO Class\nclass User { public String name; }\n\n@PostMapping(\"/users\")\npublic User createUser(@RequestBody User user) {\n    return user;\n}",
+                example: "import org.springframework.web.bind.annotation.PostMapping;\nimport org.springframework.web.bind.annotation.RequestBody;\nimport org.springframework.web.bind.annotation.RestController;\n\n// POJO (or record)\nrecord CreateUserRequest(String username, String password) {}\n\n@RestController\npublic class UserController {\n    @PostMapping(\"/api/users\")\n    public String createUser(@RequestBody CreateUserRequest req) {\n        // POST /api/users with JSON body\n        return \"Created user: \" + req.username();\n    }\n}"
+            },
+            {
+                title: "Service & DI (@Service, @Autowired)",
+                syntax: "@Service\npublic class MyService { ... }\n\n@RestController\npublic class MyController {\n    @Autowired\n    private MyService myService;\n    // ...\n}",
+                example: "import org.springframework.stereotype.Service;\nimport org.springframework.web.bind.annotation.RestController;\nimport org.springframework.beans.factory.annotation.Autowired;\n\n@Service\npublic class UserService {\n    public String findUserById(Long id) {\n        return \"User \" + id;\n    }\n}\n\n@RestController\npublic class UserController {\n    private final UserService userService;\n\n    // Constructor Injection (preferred)\n    @Autowired\n    public UserController(UserService userService) {\n        this.userService = userService;\n    }\n\n    @GetMapping(\"/users/{id}\")\n    public String getUser(@PathVariable Long id) {\n        return userService.findUserById(id);\n    }\n}"
+            },
+            {
+                title: "Configuration (application.properties)",
+                syntax: "# src/main/resources/application.properties\n\nserver.port=8080\nspring.application.name=my-app",
+                example: "# Set server port\nserver.port=8090\n\n# Set logging level\nlogging.level.org.springframework=DEBUG\nlogging.level.com.example.demo=INFO"
+            },
+        ]
+    },
 
 
     // Markup & Styling
@@ -960,13 +1005,23 @@ const allSubjects: Record<string, SubjectData> = {
             },
             {
                 title: "Permissions",
-                syntax: "chmod <mode> <file>\n# Octal: 755\n# Symbolic: u+x, g-w",
-                example: "chmod 755 script.sh  # rwx for user, r-x for group/other\nchmod u+x script.sh  # Add execute for user"
+                syntax: "chmod <mode> <file>\nchown <user>:<group> <file>\n# Octal: 755\n# Symbolic: u+x, g-w",
+                example: "chmod 755 script.sh  # rwx for user, r-x for group/other\nchmod u+x script.sh  # Add execute for user\nchown damon:users file.txt # Change owner"
             },
             {
-                title: "System & Processes",
-                syntax: "ps aux\ntop\ndf -h\ndu -sh <dir>",
-                example: "ps aux | grep \"node\"  # Find node processes\ntop  # Monitor processes (q to quit)\ndf -h  # Show disk usage\ndu -sh .  # Show size of current dir"
+                title: "User & System Info",
+                syntax: "whoami\nps aux\ntop\ndf -h\ndu -sh <dir>\nclear",
+                example: "whoami  # damon\nps aux | grep \"node\"  # Find node processes\ntop  # Monitor processes (q to quit)\ndf -h  # Show disk usage\ndu -sh .  # Show size of current dir\nclear # Clear screen"
+            },
+            {
+                title: "History & Help",
+                syntax: "history\nman <command>\n<command> --help",
+                example: "history  # Show command history\nman ls  # Show manual for ls\ngit --help  # Show help for git"
+            },
+            {
+                title: "Superuser",
+                syntax: "sudo <command>",
+                example: "sudo apt update  # Run apt update as root\nsudo rm /var/log/old.log  # Force remove a root-owned file"
             },
             {
                 title: "Piping & Redirection",
@@ -975,8 +1030,8 @@ const allSubjects: Record<string, SubjectData> = {
             },
             {
                 title: "Networking (Basic)",
-                syntax: "ping <host>\ncurl <url>",
-                example: "ping google.com\ncurl https://api.example.com/data"
+                syntax: "ping <host>\ncurl <url>\nssh <user>@<host>",
+                example: "ping google.com\ncurl https://api.example.com/data\nssh user@192.168.1.100"
             },
         ]
     },
@@ -1152,7 +1207,7 @@ const navigationGroups = [
     },
     {
         title: "Frameworks",
-        subjects: ["React", "Python: Flask", "Python: FastAPI", "Go: Gin", "Go: Echo"]
+        subjects: ["React", "Python: Flask", "Python: FastAPI", "Go: Gin", "Go: Echo", "Spring Boot"]
     },
     {
         title: "Markup & Styling",
@@ -1173,7 +1228,7 @@ const ThemeToggle: React.FC<{ theme: string; onToggle: () => void }> = ({ theme,
     <label className="theme-switch" title="Toggle theme">
         <input
             type="checkbox"
-            checked={theme === 'gruvbox'}
+            checked={theme === 'monokai'}
             onChange={onToggle}
         />
         <span className="slider round"></span>
@@ -1246,7 +1301,7 @@ const CheatSheetDisplay: React.FC<{ subject: SubjectData; onCardClick: (item: Ch
 
 
 const CheatSheetApp: React.FC = () => {
-    const [theme, setTheme] = useState<'monokai' | 'gruvbox'>('monokai');
+    const [theme, setTheme] = useState<'monokai' | 'gruvbox'>('gruvbox');
     const [activeGroupTitle, setActiveGroupTitle] = useState(navigationGroups[0].title);
     const [activeSubjectName, setActiveSubjectName] = useState(navigationGroups[0].subjects[0]);
     const [modalContent, setModalContent] = useState<CheatItem | null>(null);
