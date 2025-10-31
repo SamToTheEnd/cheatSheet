@@ -57,11 +57,7 @@ const allSubjects: Record<string, SubjectData> = {
                 syntax: "def function_name(parameters):\n    return value\n\nlambda params: expression",
                 example: "def greet(name, greeting=\"Hello\"):\n    return f\"{greeting}, {name}!\"\n\nsquare = lambda x: x ** 2\nprint(square(5))  # 25"
             },
-            {
-                title: "Generators (yield)",
-                syntax: "def generator_func():\n    yield value",
-                example: "def count_up_to(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n\nfor num in count_up_to(3):\n    print(num)  # 1, 2, 3"
-            },
+
             {
                 title: "Classes & Objects",
                 syntax: "class ClassName:\n    def __init__(self, params):\n        self.attr = params\n    def method(self):\n        ...",
@@ -156,7 +152,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "JSON (Marshal/Unmarshal)",
                 syntax: "json.Marshal(v)\njson.Unmarshal(data, &v)",
-                example: "type User struct {\n    Name string `json:\"name\"`\n}\nu := User{Name: \"Alice\"}\n\nb, err := json.Marshal(u)\n// b is [{\"name\":\"Alice\"}]\n\nvar u2 User\nerr = json.Unmarshal(b, &u2)"
+                example: "type User struct {\n    Name string `json:\"name\"`\n}\nu := User{Name: \"Sam\"}\n\nb, err := json.Marshal(u)\n// b is [{\"name\":\"Alice\"}]\n\nvar u2 User\nerr = json.Unmarshal(b, &u2)"
             },
             {
                 title: "Goroutines",
@@ -182,7 +178,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Interfaces & Types",
                 syntax: "interface Name {\n    property: type;\n    optional?: type;\n    readonly read: type;\n}\n\ntype Name = { property: type; }",
-                example: "interface Person {\n    name: string;\n    age: number;\n    email?: string;  // optional\n}\n\nconst user: Person = {\n    name: \"Bob\",\n    age: 30\n};"
+                example: "interface Person {\n    name: string;\n    age: number;\n    email?: string;  // optional\n}\n\nconst user: Person = {\n    name: \"Damon\",\n    age: 30\n};"
             },
             {
                 title: "Functions",
@@ -248,7 +244,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Classes",
                 syntax: "class Name {\n    constructor(param) {\n        this.prop = param;\n    }\n    method() { ... }\n}",
-                example: "class Person {\n    constructor(name) {\n        this.name = name;\n    }\n    greet() {\n        console.log(`Hello, ${this.name}`);\n    }\n}\n\nconst p = new Person('Alice');\np.greet(); // Hello, Alice"
+                example: "class Person {\n    constructor(name) {\n        this.name = name;\n    }\n    greet() {\n        console.log(`Hello, ${this.name}`);\n    }\n}\n\nconst p = new Person('Alice');\np.greet(); // Hello, Damon"
             },
         ]
     },
@@ -323,7 +319,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Structs",
                 syntax: "struct Name {\n    type member1;\n    type member2;\n};\n\nstruct Name var_name;",
-                example: "struct Person {\n    char name[50];\n    int age;\n};\n\nint main() {\n    struct Person p1;\n    strcpy(p1.name, \"Alice\");\n    p1.age = 30;\n    printf(\"%s is %d\\n\", p1.name, p1.age);\n    return 0;\n}"
+                example: "struct Person {\n    char name[50];\n    int age;\n};\n\nint main() {\n    struct Person p1;\n    strcpy(p1.name, \"Damon\");\n    p1.age = 30;\n    printf(\"%s is %d\\n\", p1.name, p1.age);\n    return 0;\n}"
             },
             {
                 title: "Arrays",
@@ -452,7 +448,7 @@ const allSubjects: Record<string, SubjectData> = {
                 example: "import hashlib\n\nsha = hashlib.sha512(b\"A very secure password\")\nprint(sha.hexdigest())"
             },
             {
-                title: "MD5 (Insecure)",
+                title: "MD5",
                 syntax: "# WARNING: MD5 is insecure and should not be used for security.\n# Only use for checksums / non-crypto purposes.\nhash_obj = hashlib.md5(b'data').hexdigest()",
                 example: "import hashlib\n\nmd5 = hashlib.md5(b\"file_content_for_checksum\").hexdigest()\nprint(md5)"
             },
@@ -469,17 +465,17 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Printing to Console",
                 syntax: "fmt.Print(a ...any)     // Print side-by-side\nfmt.Println(a ...any)   // Print with spaces & newline\nfmt.Printf(format, a ...any) // Print with format string",
-                example: "import \"fmt\"\n\nfunc main() {\n    fmt.Print(\"Hello, \")\n    fmt.Print(\"World!\\n\")\n    fmt.Println(\"Hello\", \"World\") // Hello World\n    fmt.Printf(\"User: %s, Age: %d\\n\", \"Alice\", 30)\n}"
+                example: "import \"fmt\"\n\nfunc main() {\n    fmt.Print(\"Hello, \")\n    fmt.Print(\"World!\\n\")\n    fmt.Println(\"Hello\", \"World\") // Hello World\n    fmt.Printf(\"User: %s, Age: %d\\n\", \"Damon\", 30)\n}"
             },
             {
                 title: "Formatting Verbs (Common)",
                 syntax: "%v  // Default format (value)\n%+v // Default format (w/ field names for structs)\n%#v // Go-syntax representation\n%T  // Type of the value\n%d  // Integer (base 10)\n%s  // String\n%f  // Float\n%t  // Boolean",
-                example: "import \"fmt\"\n\ntype User struct { Name string }\n\nfunc main() {\n    u := User{Name: \"Bob\"}\n    fmt.Printf(\"Value: %v\\n\", u)      // {Bob}\n    fmt.Printf(\"Value+: %+v\\n\", u)     // {Name:Bob}\n    fmt.Printf(\"Go-Syntax: %#v\\n\", u) // main.User{Name:\"Bob\"}\n    fmt.Printf(\"Type: %T\\n\", u)       // main.User\n}"
+                example: "import \"fmt\"\n\ntype User struct { Name string }\n\nfunc main() {\n    u := User{Name: \"Damon\"}\n    fmt.Printf(\"Value: %v\\n\", u)      // {Damon}\n    fmt.Printf(\"Value+: %+v\\n\", u)     // {Name:Damon}\n    fmt.Printf(\"Go-Syntax: %#v\\n\", u) // main.User{Name:\"Damon\"}\n    fmt.Printf(\"Type: %T\\n\", u)       // main.User\n}"
             },
             {
                 title: "Formatting to String (Sprintf)",
                 syntax: "s := fmt.Sprintf(format, a ...any)\n// Returns a formatted string",
-                example: "import \"fmt\"\n\nfunc main() {\n    name := \"Alice\"\n    age := 30\n    s := fmt.Sprintf(\"User %s is %d years old.\", name, age)\n    fmt.Println(s)\n    // Output: User Alice is 30 years old.\n}"
+                example: "import \"fmt\"\n\nfunc main() {\n    name := \"Damon\"\n    age := 30\n    s := fmt.Sprintf(\"User %s is %d years old.\", name, age)\n    fmt.Println(s)\n    // Output: User Damon is 30 years old.\n}"
             },
             {
                 title: "Formatting to Writer (Fprintf)",
@@ -538,7 +534,7 @@ const allSubjects: Record<string, SubjectData> = {
         items: [
             {
                 title: "Homomorphic Encryption",
-                syntax: "import \"github.com/tuneinsight/lattigo/v5/core/rlwe\"\n\n// Lattigo is a library for Homomorphic Encryption.\n// It allows computations on encrypted data.",
+                syntax: "import \"github.com/tuneinsight/lattigo/v5/core/rlwe\"\n\n// Lattigo is a library for Homomorphic Encryption.\n// It allows computations on encrypted data. Making use of Lattice-based cryptography.",
                 example: "// Conceptual: Not runnable without full setup\npackage main\n\nimport (\n    \"github.com/tuneinsight/lattigo/v5/schemes/bfv\"\n    \"log\"\n)\n\nfunc main() {\n    // 1. Get parameters\n    params, err := bfv.NewParametersFromLiteral(bfv.PN12QP109)\n    if err != nil { log.Fatal(err) }\n\n    // 2. Setup (keys, encryptor, evaluator...)\n    // ... (complex setup omitted)\n\n    log.Println(\"Lattigo setup complete.\")\n    // 3. Encrypt, Evaluate, Decrypt...\n}"
             },
             {
@@ -580,8 +576,8 @@ const allSubjects: Record<string, SubjectData> = {
             },
             {
                 title: "Props & Composition",
-                syntax: "// Parent Component\n<ChildComponent name=\"Alice\" />\n\n// Child Component\nfunction ChildComponent(props) {\n    return <h1>Hello, {props.name}</h1>\n}\n// or with destructuring:\n// function ChildComponent({ name }) { ... }",
-                example: "// Child\nfunction Welcome(props) {\n    return <h2>Hello, {props.user}</h2>;\n}\n\n// Parent\nfunction App() {\n    return (\n        <div>\n            <Welcome user=\"Alice\" />\n            <Welcome user=\"Bob\" />\n        </div>\n    );\n}"
+                syntax: "// Parent Component\n<ChildComponent name=\"Damon\" />\n\n// Child Component\nfunction ChildComponent(props) {\n    return <h1>Hello, {props.name}</h1>\n}\n// or with destructuring:\n// function ChildComponent({ name }) { ... }",
+                example: "// Child\nfunction Welcome(props) {\n    return <h2>Hello, {props.user}</h2>;\n}\n\n// Parent\nfunction App() {\n    return (\n        <div>\n            <Welcome user=\"Damon\" />\n            <Welcome user=\"Graham\" />\n        </div>\n    );\n}"
             },
             {
                 title: "Conditional Rendering",
@@ -616,7 +612,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Request Object (GET/POST)",
                 syntax: "from flask import request\n\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        user = request.form['username']\n        return f'Hello {user}'\n    else:\n        query = request.args.get('q')\n        return f'Searching for {query}'",
-                example: "# POST to /login with form data: username=Alice\n# -> Returns 'Hello Alice'\n\n# GET /login?q=test\n# -> Returns 'Searching for test'"
+                example: "# POST to /login with form data: username=Damon\n# -> Returns 'Hello Damon'\n\n# GET /login?q=test\n# -> Returns 'Searching for test'"
             },
             {
                 title: "Returning JSON",
@@ -651,7 +647,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Request Body (Pydantic)",
                 syntax: "from pydantic import BaseModel\n\nclass Item(BaseModel):\n    name: str\n    price: float\n\n@app.post(\"/items/\")\nasync def create_item(item: Item):\n    return item",
-                example: "from fastapi import FastAPI\nfrom pydantic import BaseModel\n\nclass User(BaseModel):\n    username: str\n    email: str | None = None\n\napp = FastAPI()\n\n@app.post(\"/users/\")\nasync def create_user(user: User):\n    # POST with JSON: {\"username\": \"alice\"}\n    return {\"status\": \"created\", \"user\": user.username}"
+                example: "from fastapi import FastAPI\nfrom pydantic import BaseModel\n\nclass User(BaseModel):\n    username: str\n    email: str | None = None\n\napp = FastAPI()\n\n@app.post(\"/users/\")\nasync def create_user(user: User):\n    # POST with JSON: {\"username\": \"Damon\"}\n    return {\"status\": \"created\", \"user\": user.username}"
             },
             {
                 title: "Status Codes",
@@ -664,7 +660,7 @@ const allSubjects: Record<string, SubjectData> = {
         name: "Go: Gin",
         items: [
             {
-                title: "Project Initialisation (go mod)",
+                title: "Project Initialisation",
                 syntax: "# 1. Create a project directory\nmkdir my-gin-app\ncd my-gin-app\n# 2. Initialize Go module\ngo mod init example.com/my-gin-app\n# 3. Get Gin dependency\ngo get -u github.com/gin-gonic/gin",
                 example: "$ mkdir hello-gin\n$ cd hello-gin\n$ go mod init example.com/hello-gin\n$ go get -u github.com/gin-gonic/gin\n# Create main.go with Gin code...\n$ go run main.go"
             },
@@ -689,7 +685,7 @@ const allSubjects: Record<string, SubjectData> = {
                 example: "package main\nimport \"github.com/gin-gonic/gin\"\n\ntype Person struct {\n    Name string `json:\"name\" binding:\"required\"`\n    Age  int    `json:\"age\"`\n}\n\nfunc main() {\n    r := gin.Default()\n    r.POST(\"/users\", func(c *gin.Context) {\n        var p Person\n        if err := c.ShouldBindJSON(&p); err != nil {\n            c.JSON(400, gin.H{\"error\": \"Bad request\"})\n            return\n        }\n        c.JSON(201, gin.H{\"message\": p.Name + \" created\"})\n    })\n    r.Run(\":8080\")\n}"
             },
             {
-                title: "Middleware (Basic)",
+                title: "Middleware",
                 syntax: "r := gin.Default() // Default() includes Logger and Recovery\n\n// Custom middleware\nr.Use(func(c *gin.Context) {\n    fmt.Println(\"Request received!\")\n    c.Next() // Pass control to the next handler\n})",
                 example: "package main\nimport (\n    \"fmt\"\n    \"github.com/gin-gonic/gin\"\n    \"time\"\n)\n\nfunc Logger() gin.HandlerFunc {\n    return func(c *gin.Context) {\n        t := time.Now()\n        c.Next()\n        latency := time.Since(t)\n        fmt.Printf(\"%s %s in %v\\n\", c.Request.Method, c.Request.URL.Path, latency)\n    }\n}\n\nfunc main() {\n    r := gin.New() // New() is empty\n    r.Use(Logger()) // Use our custom logger\n    r.GET(\"/ping\", func(c *gin.Context) {\n        c.JSON(200, gin.H{\"message\": \"pong\"})\n    })\n    r.Run(\":8080\")\n}"
             },
@@ -699,7 +695,7 @@ const allSubjects: Record<string, SubjectData> = {
         name: "Go: Echo",
         items: [
             {
-                title: "Project Initialisation (go mod)",
+                title: "Project Initialisation",
                 syntax: "# 1. Create a project directory\nmkdir my-echo-app\ncd my-echo-app\n# 2. Initialize Go module\ngo mod init example.com/my-echo-app\n# 3. Get Echo dependency\ngo get -u github.com/labstack/echo/v4",
                 example: "$ mkdir hello-echo\n$ cd hello-echo\n$ go mod init example.com/hello-echo\n$ go get -u github.com/labstack/echo/v4\n# Create main.go with Echo code...\n$ go run main.go"
             },
@@ -724,14 +720,14 @@ const allSubjects: Record<string, SubjectData> = {
                 example: "package main\nimport (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n)\ntype User struct {\n    Name string `json:\"name\"`\n}\n\nfunc createUser(c echo.Context) error {\n    u := new(User)\n    if err := c.Bind(u); err != nil {\n        return err\n    }\n    return c.JSON(http.StatusCreated, u)\n}\n\nfunc main() {\n    e := echo.New()\n    e.POST(\"/users\", createUser)\n    e.Logger.Fatal(e.Start(\":1323\"))\n}"
             },
             {
-                title: "Middleware (Logging)",
+                title: "Middleware",
                 syntax: "import \"github.com/labstack/echo/v4/middleware\"\n\ne := echo.New()\n// DefaultWithConfig provides simple logging\ne.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{\n    Format: \"method=${method}, uri=${uri}, status=${status}\\n\",\n}))",
                 example: "package main\nimport (\n    \"net/http\"\n    \"github.com/labstack/echo/v4\"\n    \"github.com/labstack/echo/v4/middleware\"\n)\n\nfunc main() {\n    e := echo.New()\n    // Use the built-in Logger middleware\n    e.Use(middleware.Logger())\n    // Use the built-in Recover middleware\n    e.Use(middleware.Recover())\n\n    e.GET(\"/\", func(c echo.Context) error {\n        return c.String(http.StatusOK, \"Hello, Echo!\")\n    })\n    e.Logger.Fatal(e.Start(\":1323\"))\n}"
             },
         ]
     },
     "Spring Boot": {
-        name: "Spring Boot",
+        name: "SpringBoot",
         items: [
             {
                 title: "Project Initialisation (Initializr)",
@@ -800,6 +796,11 @@ const allSubjects: Record<string, SubjectData> = {
                 title: "Lists (Unordered & Ordered)",
                 syntax: "<ul>\n    <li>Item 1</li>\n    <li>Item 2</li>\n</ul>\n\n<ol>\n    <li>First</li>\n    <li>Second</li>\n</ol>",
                 example: "<h3>Todo:</h3>\n<ul>\n    <li>Buy milk</li>\n    <li>Read book</li>\n</ul>\n<h3>Steps:</h3>\n<ol>\n    <li>Open app</li>\n    <li>Click button</li>\n</ol>"
+            },
+            {
+                "title": "Buttons (`<button>`)",
+                "syntax": "<button type=\"button\">Click Me</button>\n\n<button type=\"submit\">Submit</button>\n\n<button type=\"reset\">Reset</button>",
+                "example": "<h3>Login Form:</h3>\n<form action=\"/submit-data\">\n    <button type=\"submit\">Login</button>\n    <button type=\"button\">Cancel</button>\n</form>"
             },
             {
                 title: "Forms (Basic)",
@@ -894,7 +895,7 @@ const allSubjects: Record<string, SubjectData> = {
             {
                 title: "Links & Images",
                 syntax: "[Link Text](url)\n![Alt Text](image_url)",
-                example: "[Visit Google](https://google.com)\n![A cute cat](cat.jpg)"
+                example: "[Visit Google](https://google.com)\n![blur](blur.jpg)"
             },
             {
                 title: "Lists (Unordered)",
@@ -1029,7 +1030,7 @@ const allSubjects: Record<string, SubjectData> = {
                 example: "ls -l | grep \".txt\"  # Pipe ls output to grep\necho \"Hello\" > file.txt  # Overwrite\necho \"World\" >> file.txt  # Append"
             },
             {
-                title: "Networking (Basic)",
+                title: "Networking",
                 syntax: "ping <host>\ncurl <url>\nssh <user>@<host>",
                 example: "ping google.com\ncurl https://api.example.com/data\nssh user@192.168.1.100"
             },
@@ -1207,7 +1208,7 @@ const navigationGroups = [
     },
     {
         title: "Frameworks",
-        subjects: ["React", "Python: Flask", "Python: FastAPI", "Go: Gin", "Go: Echo", "Spring Boot"]
+        subjects: ["React", "Python: Flask", "Python: FastAPI", "Go: Gin", "Go: Echo", "SpringBoot"]
     },
     {
         title: "Markup & Styling",
