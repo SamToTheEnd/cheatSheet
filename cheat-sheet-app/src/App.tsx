@@ -556,8 +556,8 @@ const allSubjects: Record<string, SubjectData> = {
     },
 
     // Fraemworks
-    "React": {
-        name: "React",
+    "JS/TS: React": {
+        name: "JS/TS: React",
         items: [
             {
                 title: "Project Initialisation (Vite)",
@@ -726,8 +726,8 @@ const allSubjects: Record<string, SubjectData> = {
             },
         ]
     },
-    "Spring Boot": {
-        name: "SpringBoot",
+    "Java: Springboot": {
+        name: "Java: Springboot",
         items: [
             {
                 title: "Project Initialisation (Initializr)",
@@ -1208,7 +1208,7 @@ const navigationGroups = [
     },
     {
         title: "Frameworks",
-        subjects: ["React", "Python: Flask", "Python: FastAPI", "Go: Gin", "Go: Echo", "SpringBoot"]
+        subjects: ["JS/TS: React", "Python: Flask", "Python: FastAPI", "Go: Gin", "Go: Echo", "Java: Springboot"]
     },
     {
         title: "Markup & Styling",
@@ -1249,12 +1249,7 @@ const AppHeader: React.FC<{ theme: string; onToggleTheme: () => void }> = ({ the
  | |  | | | | | |/ __| |/ / |  | |/ _ \\ / __/ __|
  | |__| | |_| | | (__|   <| |__| | (_) | (__\\__ \\
   \\___\\_\\\\__,_|_|\\___|_|\\_\\_____/ \\___/ \\___|___/
-                                                 
-                                                 
-                                                                                
-                                                 
-                                                                     
-                                                                                                    
+                                                                                                                                                                  
 `}
                 </pre>
             </div>
