@@ -530,7 +530,7 @@ const allSubjects: Record<string, SubjectData> = {
         ]
     },
     "Go: Crypto (Lattigo)": {
-        name: "Go: Lattigo (Homomorphic)",
+        name: "Go: Crypto (Lattigo)",
         items: [
             {
                 title: "Homomorphic Encryption",
@@ -1242,15 +1242,16 @@ const AppHeader: React.FC<{ theme: string; onToggleTheme: () => void }> = ({ the
         <div className="header-content">
             <div className="header-logo">
                 <pre>
-{`
-      ___          _          ___               
-   /   \__ _ ___| |__      /   \___   ___ ___ 
-  / /\ / _` / __| '_ \    / /\ / _ \ / __/ __|
- / /_// (_| \__ \ | | |  / /_// (_) | (__\__ \
-/___,' \__,_|___/_| |_| /___,' \___/ \___|___/
+{
+    `
+    ___           _         ___               
+   /   \\__ _ ___| |__      /   \\___   ___ ___ 
+  / /\\ / _\` / __| '_ \\    / /\\ / _ \\ / __/ __|
+ / /_// (_| \\__ \\ | | |  / /_// (_) | (__\\__ \\
+/___,' \\__,_|___/_| |_| /___,' \\___/ \\___|___/
                                               
-                                                                                                                                                                  
-`}
+`
+}
                 </pre>
             </div>
             <ThemeToggle theme={theme} onToggle={onToggleTheme} />
