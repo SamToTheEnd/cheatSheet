@@ -8,15 +8,15 @@
 
 
 .app.monokai {
-    --bg: #0d0d0d;
-    --surface: #1a1a1a;
-    --elevated: #222;
+    --bg: #000000;
+    --surface: #0a0a0a;
+    --elevated: #141414;
     --accent: #f92672;
     --accent-dim: rgba(249, 38, 114, 0.1);
     --text: #e8e8e8;
     --text-dim: #888;
     --border: rgba(255, 255, 255, 0.06);
-    --code-bg: #151515;
+    --code-bg: #000000;
 }
 
 .app.gruvbox {
